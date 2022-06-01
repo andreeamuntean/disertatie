@@ -3,18 +3,18 @@
 <html>
 <head>
 <meta charset="utf-8">
-<title>Untitled Document</title>
+<title>Safemed</title>
 <style>
 	body{
 		margin: 0;
-		background: #CBCBCB;
+		background: #ffffff;
 	}
 	.header{
 		width: 1200px;
 		height: 85px;
 		margin: auto;
 		overflow: auto;
-		background: #e1f6fb;
+		background: #def2f1;
 	}
 	.header .logo{
 		padding-left: 10px;
@@ -30,7 +30,7 @@
 		width: 100%;
 		margin: auto;
 		overflow: auto;
-		background:#eaf2fb;
+		background:#def2f1;
 	}
 	.logo{
 		float: left;
@@ -50,6 +50,7 @@
 		margin-left: 10px;
 		margin-top: 10px;
 		padding: 10px;
+		border-radius: 10px;
 	}
 	.meniu a:hover{box-shadow: 0 0 11px rgba(33,33,33,.2); }
 	.middle .banner{
@@ -63,8 +64,10 @@
 </style>
 </head>
 
+<script src='https://kit.fontawesome.com/a076d05399.js' crossorigin='anonymous'></script>
+
 <body>
-	<div style="width: 100%; background: #e1f6fb;">
+	<div style="width: 100%; background: #def2f1;">
 		<div class="header">
 			<div class="logo"><a href=""><img src="images/Untitled-2 1.png" height="80"></a>
 
@@ -119,10 +122,111 @@
 				</tr>
 			</table>
 		</div>
+
+		<div style="width: 100%; overflow: auto; margin-bottom: 20px;">
+			<table style="width: 100%" border="1">
+				<tr>
+					<td colspan="2" align="center">NEUROLOGIE</td>
+				</tr>
+				<tr>
+					<td>ADMINISTRARE TRATAMENT</td>
+					<td>50 LEI</td>
+				</tr>
+			</table>
+		</div>
+
+		<div style="width: 100%; overflow: auto; margin-bottom: 20px;">
+			<table style="width: 100%" border="1">
+				<tr>
+					<td colspan="2" align="center">NEUROLOGIE</td>
+				</tr>
+				<tr>
+					<td>ADMINISTRARE TRATAMENT</td>
+					<td>50 LEI</td>
+				</tr>
+			</table>
+		</div>
+
+		<div style="width: 100%; overflow: auto; margin-bottom: 20px;">
+			<table style="width: 100%" border="1">
+				<tr>
+					<td colspan="2" align="center">NEUROLOGIE</td>
+				</tr>
+				<tr>
+					<td>ADMINISTRARE TRATAMENT</td>
+					<td>50 LEI</td>
+				</tr>
+			</table>
+		</div>
+
+		<div style="width: 100%; overflow: auto; margin-bottom: 20px;">
+			<table style="width: 100%" border="1">
+				<tr>
+					<td colspan="2" align="center">NEUROLOGIE</td>
+				</tr>
+				<tr>
+					<td>ADMINISTRARE TRATAMENT</td>
+					<td>50 LEI</td>
+					
+				</tr>
+
+				<tr>
+					<td>ADMINISTRARE TRATAMENT</td>
+					<td>50 LEI</td>
+					
+				</tr>
+				<tr>
+					<td>ADMINISTRARE TRATAMENT</td>
+					<td>50 LEI</td>
+					
+				</tr>
+				<tr>
+					<td>ADMINISTRARE TRATAMENT</td>
+					<td>50 LEI</td>
+					
+				</tr>
+				<tr>
+					<td>ADMINISTRARE TRATAMENT</td>
+					<td>50 LEI</td>
+					
+				</tr>
+			</table>
+		</div>
+
+		<div style="width: 100%; overflow: auto; margin-bottom: 20px;">
+			<table style="width: 100%" border="1">
+				<tr>
+					<td colspan="2" align="center">NEUROLOGIE</td>
+				</tr>
+				<tr>
+					<td>ADMINISTRARE TRATAMENT</td>
+					<td>50 LEI</td>
+				</tr>
+			</table>
+		</div>
 		
 	</div>
 	<div class="footer">
-		<div style="margin: auto; width: 1180px; height: 80px; padding: 10px;">contact
+
+		<div class="logo">
+			<img src="images/Untitled-2 1.png" height="80" style="vertical-align:top;margin:20px 20px">
+		</div>
+
+		<div style="margin: auto; width: 1180px; height: auto; padding: 20px; ">CONTACT <br> <br>
+		<div style="float: left; width: 380px; margin-right: 20px; margin-bottom: 25px; overflow: auto;">
+		<i class="fas fa-map-marker-alt">Address</i>
+		<p> Crizantemelor Street, no. 123 </p>
+		<p>Timisoara</p>
+		</div>
+
+		<div style="float: left; width: 380px; overflow: auto;">
+		<i class="fas fa-phone-alt">Phone</i> 
+		<p>+40 722 950 010</p>
+		</div>
+
+		<div style="float: left; width: 380px; overflow: auto;">
+		<i class="fas fa-envelope">Email</i>
+			<p>safemed@gmail.com</p>
 		</div>
 	</div>
 </body>

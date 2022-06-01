@@ -5,7 +5,7 @@ if(isset($_POST['reg_doc'])){ echo '<META HTTP-EQUIV=Refresh CONTENT="0; URL=reg
 if(isset($_POST['trimite'])){
 	$rez = mysqli_query($conn, "INSERT INTO pacienti (name, email, pass, tel, gen, varsta) VALUES ('".$_POST['name']."', '".$_POST['email']."', '".md5($_POST['pass'])."', '".$_POST['tel']."', '".$_POST['gen']."', '".$_POST['varsta']."')") or die (mysqli_error($conn));
 	if($rez) {
-		$error = "<div style='background:green; color:#FFFFFF; font-weight:bold;'>S-a salvat cu succes</div>";
+		$error = "<div style='background:green; color:#FFFFFF; font-weight:bold;'>Successfully registered</div>";
 		echo '<META HTTP-EQUIV=Refresh CONTENT="2; URL=login.php">';
 	}
 } else { $error = "&nbsp;"; }
@@ -18,14 +18,14 @@ if(isset($_POST['trimite'])){
 <style>
 	body{
 		margin: 0;
-		background: #CBCBCB;
+		background: #def2f1;
 	}
 	.header{
 		width: 1200px;
 		height: 85px;
 		margin: auto;
 		overflow: auto;
-		background: #e1f6fb;
+		background: #def2f1;
 	}
 	.header .logo{
 		padding-left: 10px;
@@ -40,7 +40,7 @@ if(isset($_POST['trimite'])){
 		width: 100%;
 		margin: auto;
 		overflow: auto;
-		background:#eaf2fb;
+		background:#def2f1;
 	}
 	.logo{
 		float: left;
@@ -60,6 +60,7 @@ if(isset($_POST['trimite'])){
 		margin-left: 10px;
 		margin-top: 10px;
 		padding: 10px;
+		border-radius: 10px;
 	}
 	.meniu a:hover{box-shadow: 0 0 11px rgba(33,33,33,.2); }
 	.middle .banner{
@@ -101,25 +102,25 @@ if(isset($_POST['trimite'])){
 	}
 </style>
 </head>
-
+<script src='https://kit.fontawesome.com/a076d05399.js' crossorigin='anonymous'></script>
 <body>
-	<div style="width: 100%; background: #e1f6fb;">
+	<div style="width: 100%; background: #def2f1;">
 		<div class="header">
-			<div class="logo"><a href=""><img src="images/Untitled-2 1.png" height="80"></a>
+			<div class="logo"><a href="index.php"><img src="images/Untitled-2 1.png" height="80"></a>
 				
 			</div>
 			<div class="meniu">
 				<?php if(isset($_SESSION['auth'])){ ?>
 				<?php switch($_SESSION['auth']){ 
 					case 'access': ?>
-					<a href="logout.php">logout</a>
+					<a href="logout.php">Logout</a>
 					<a href="contact.php">Contact</a>
 					<a href="pacient.php">My account</a>
 					<a href="service.php">Services and prices</a>
 					<a href="appoint.php">Make an appointment</a>
 					<a href="index.php">How it works</a>
 				<?php break; case 'access_doc': ?>
-					<a href="logout.php">logout</a>
+					<a href="logout.php">Logout</a>
 					<a href="contact.php">Contact</a>
 					<a href="doctor.php">My account</a>
 					<a href="index.php">How it works</a>
@@ -138,11 +139,11 @@ if(isset($_POST['trimite'])){
 		<div class="reg">
 			<p><strong><h3>Register as a patient</h3></strong></p><br><br>
 			<form action="reg_pac.php" method="post" enctype="multipart/form-data">
-					<input type="text" name="name" id="name" placeholder="First name and Last name" class="input"><br><br><br>
-					<input type="text" name="email" id="email" placeholder="E-mail" class="input"><br><br><br>
-					<input type="password" name="pass" id="pass" placeholder="Password" class="input"><br><br><br>
-					<input type="text" name="tel" id="tel" placeholder="Telefon" class="input"><br><br><br>
-					Genul <input type="radio" name="gen" id="f" value="0"> Feminin&nbsp;&nbsp;<input type="radio" name="gen" id="m" value="1"> Masculin<br><br><br>
+					<input type="text" name="name" id="name" placeholder="First name and Last name" class="input" required><br><br><br>
+					<input type="email" name="email" id="email" placeholder="E-mail" class="input" required><br><br><br>
+					<input type="password" name="pass" id="pass" placeholder="Password" class="input" required><br><br><br>
+					<input type="tel" name="tel" id="tel" placeholder="Telefon" class="input" required><br><br><br>
+					Genul <input type="radio" name="gen" id="f" value="0" required> Feminin&nbsp;&nbsp;<input type="radio" name="gen" id="m" value="1" required> Masculin<br><br><br>
 					<input type="text" name="varsta" id="varsta" placeholder="varsta" class="input"><br><br><br><br><br>
 					<?php echo $error; ?>
 					<input type="submit" name="trimite" id="trimite" value="Register" class="search"><br><br><br>
@@ -151,7 +152,26 @@ if(isset($_POST['trimite'])){
 		</div>		
 	</div>
 	<div class="footer">
-		<div style="margin: auto; width: 1180px; height: 80px; padding: 10px;">contact
+
+		<div class="logo">
+			<img src="images/Untitled-2 1.png" height="80" style="vertical-align:top;margin:20px 20px">
+		</div>
+
+		<div style="margin: auto; width: 1180px; height: auto; padding: 20px; ">CONTACT <br> <br>
+		<div style="float: left; width: 380px; margin-right: 20px; margin-bottom: 25px; overflow: auto;">
+		<i class="fas fa-map-marker-alt">Address</i>
+		<p> Crizantemelor Street, no. 123 </p>
+		<p>Timisoara</p>
+		</div>
+
+		<div style="float: left; width: 380px; overflow: auto;">
+		<i class="fas fa-phone-alt">Phone</i> 
+		<p>+40 722 950 010</p>
+		</div>
+
+		<div style="float: left; width: 380px; overflow: auto;">
+		<i class="fas fa-envelope">Email</i>
+			<p>safemed@gmail.com</p>
 		</div>
 	</div>
 </body>

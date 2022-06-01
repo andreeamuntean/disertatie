@@ -145,7 +145,7 @@ INSERT INTO `pacienti` (`id`, `name`, `email`, `pass`, `tel`, `gen`, `varsta`) V
 (1, 'test', 'test', '098f6bcd4621d373cade4e832627b4f6', '074906', 0, 18),
 (2, 't1', 't2', '0f826a89cf68c399c5f4cf320c1a5842', '0749', 0, 20),
 (3, 'ionecu cristian', 'crisony@gmail.com', '81dc9bdb52d04dc20036dbd8313ed055', '0749064422', 0, 20),
-(4, 'cristian vescovici', 'crisony@yahoo.com', '098f6bcd4621d373cade4e832627b4f6', '074906', 1, 41);
+
 
 -- --------------------------------------------------------
 

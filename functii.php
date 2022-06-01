@@ -25,7 +25,7 @@ function auth($u,$p, $c) {
 		
     	header("Location: pacient.php");
 	} else {
-  		$msg = "Datele sunt incorecte pacient";
+  		$msg = "Patient incorect credentials";
   		return $msg;
 	}
 }
@@ -41,7 +41,7 @@ function auth_doc($u,$p, $c) {
 		$_SESSION['depart_doctor'] = $d['depart'];
     	header("Location: doctor.php?date=".date('Y-m-d'));
 	} else {
-  		$msg = "Datele sunt incorecte doctor";
+  		$msg = "Doctor incorrect credentials";
   		return $msg;
 	}
 }
