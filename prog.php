@@ -1,15 +1,16 @@
 <?php include('db.php'); ?>
 <?php
-	$sel = mysqli_query($conn, "select * from doctor inner join depart on depart.id = doctor.depart where doctor.depart = '".$_GET['id_depart']."' and doctor.id = '".$_GET['id_doctor']."'") or die (mysqli_error($conn));
+	$sel = mysqli_query($conn, "select doctor.name, clinic.denumire, depart.demunire, doctor.tel, clinic.id from doctor inner join depart on depart.id = doctor.depart inner join clinic on clinic.id=doctor.clinic where doctor.depart = '".$_GET['id_depart']."' and doctor.id = '".$_GET['id_doctor']."'") or die (mysqli_error($conn));
+	// $sel = mysqli_query($conn, "select * from doctor inner join clinic on clinic.id = doctor.clinic where doctor.clinic = '".$_GET['id_clinic']."' and doctor.id = '".$_GET['id_doctor']."'") or die (mysqli_error($conn));
 	$rez = mysqli_fetch_row($sel);
-	$sel_prog = mysqli_query($conn, "select * from programari where id_depart = '".$_GET['id_depart']."' and id_doctor = '".$_GET['id_doctor']."'") or die (mysqli_error($conn));
+	$sel_prog = mysqli_query($conn, "select * from programari where id_depart = '".$_GET['id_depart']."' and id_doctor = '".$_GET['id_doctor']."' ") or die (mysqli_error($conn));
 	$rez_prog = mysqli_fetch_row($sel_prog);
 	
 	$list_ora = array("8:00", "8:20", "8:40", "9:00", "9:20", "9:40", "10:00", "10:20", "10:40", "11:00", "11:20", "11:40", "12:00", "12:20", "12:40", "13:00", "13:20", "13:40", "14:00", "14:20", "14:40", "15:00", "15:20", "15:40", "16:00", "16:20", "16:40", "17:00", "17:20", "17:40", "18:00", "18:20", "18:40", "19:00", "19:20", "19:40");
 ?>
 <?php 
  if(isset($_POST['prog'])){
-	 $ins = mysqli_query($conn, "insert into programari (id_doctor, id_depart, id_pacient, data, ora, description) values ('".$_POST['id_doctor']."', '".$_POST['id_depart']."', '".$_SESSION['id_pacient']."', '".$_POST['date']."', '".$_POST['ora']."', '".$_POST['description']."')") or die (mysqli_error($conn));
+	 $ins = mysqli_query($conn, "insert into programari (id_doctor, id_depart, id_clinic, id_pacient, data, ora, description) values ('".$_GET['id_doctor']."', '".$_GET['id_depart']."', '".$_POST['id_clinic']."','".$_SESSION['id_pacient']."', '".$_POST['date']."', '".$_POST['ora']."', '".$_POST['description']."')") or die (mysqli_error($conn));
 	 if($ins) {
 		$error = "<div style='background:green; color:#FFFFFF; font-weight:bold;'>Succesfully saved</div>";
 		echo '<META HTTP-EQUIV=Refresh CONTENT="2; URL=appoint.php">';
@@ -70,7 +71,17 @@ for ( $day = 1; $day <= $day_count; $day++, $str++) {
     if ($today == $date) {
         $week .= '<td class="today"><a href="?ym='.$ym.'-'.$day.'&id_doctor='.$_GET['id_doctor'].'&id_depart='.$_GET['id_depart'].'">' . $day.'</a>';
     } else {
-		$week .= '<td><a href="?ym='.$ym.'-'.$day.'&id_doctor='.$_GET['id_doctor'].'&id_depart='.$_GET['id_depart'].'">' . $day.'</a>';
+		if($day < date('d'))
+		{
+			$week .= '<td class="today_close">' . $day; 
+		} else {
+			if(substr($_GET['ym'], 8, 2) == $day){
+				$week .= '<td class="today_select"><a href="?ym='.$ym.'-'.$day.'&id_doctor='.$_GET['id_doctor'].'&id_depart='.$_GET['id_depart'].'"> ' . $day.' </a>'; 
+			} else{
+				$week .= '<td><a href="?ym='.$ym.'-'.$day.'&id_doctor='.$_GET['id_doctor'].'&id_depart='.$_GET['id_depart'].'">' . $day.'  </a>'; 
+			}
+			
+		}
     }
     $week .= '</td>';
      
@@ -79,7 +90,7 @@ for ( $day = 1; $day <= $day_count; $day++, $str++) {
 
         if ($day == $day_count) {
             // Add empty cell
-            $week .= str_repeat('<td></td>', 6 - ($str % 7));
+            $week .= str_repeat('<td></td>', 6 - ($str % 7)); //the dates not in this month - spare dates
         }
 
         $weeks[] = '<tr>' . $week . '</tr>';
@@ -98,7 +109,7 @@ for ( $day = 1; $day <= $day_count; $day++, $str++) {
 <style>
 	body{
 		margin: 0;
-		background: #CBCBCB;
+		background: #FFFFFF;
 	}
 	.header{
 		width: 1200px;
@@ -152,13 +163,13 @@ for ( $day = 1; $day <= $day_count; $day++, $str++) {
 		padding-top: 100px;
 		padding-left: 700px;
 	}
-	select{
+	.select{
 		width: 270px;
 		height: 40px;
 		border-radius: 10px;
 		background: #D2F4FD;
 	}
-	.search{
+	.button{
 		width: 150px;
 		height: 40px;
 		background: #5AEBAE;
@@ -170,6 +181,7 @@ for ( $day = 1; $day <= $day_count; $day++, $str++) {
             margin: auto;
 			background: #FFF;
 			width: 700px;
+			border-radius: 10px;
         }
         h3 {
             margin-bottom: 30px;
@@ -191,6 +203,16 @@ for ( $day = 1; $day <= $day_count; $day++, $str++) {
         .today {
             background: orange;
         }
+
+		.today_close {
+            background: #CCC;
+			color:white;
+        }
+
+		.today_select {
+			background: #396cf0;
+		}
+
         th:nth-of-type(1), td:nth-of-type(1) {
             color: red;
         }
@@ -275,19 +297,19 @@ for ( $day = 1; $day <= $day_count; $day++, $str++) {
 					<img src="images/doctor 1.png" width="100">
 				</div>
 				<div style="float: left; width: 720px; padding-left: 30px; padding-top: 20px; height: 96.76px;">
-					<strong>Doctor: </strong><?php echo $rez[1]; ?><br><input type="hidden" name="id_doctor" id="id_doctor" value="<?php echo $rez[0]; ?>">
-					<strong>Clinic: </strong><br>
-					<strong>Department: </strong><?php echo $rez[10]; ?><br><input type="hidden" name="id_depart" id="id_depart" value="<?php echo $rez[9]; ?>">
-					<strong>Phone: </strong><?php echo $rez[6]; ?><br>
+					<strong>Doctor: </strong><?php echo $rez[0]; ?><br>
+					<strong>Clinic: </strong><?php echo $rez[1]; ?><br><input type="hidden" name="id_clinic" id="id_clinic" value="<?php echo $rez[4]; ?>">
+					<strong>Department: </strong><?php echo $rez[2]; ?><br>
+					<strong>Phone: </strong><?php echo $rez[3]; ?>
 				</div>
 				<div style="float: left; width: 150px; height: 76.76px; padding-top: 38.38px; text-align: center;">
 					
 				</div>
 			</div>
-		<div style="background:#D2F4FD; margin-bottom: 30px; margin-left: 50px; width: 1000px; overflow: auto; padding: 20px 40px; ">
+		<div style="background:#D2F4FD; margin-bottom: 30px; margin-left: 50px; width: 1000px; overflow: auto; padding: 20px 40px; border-radius: 10px; ">
 			
 			<div class="container">
-				<div style="width: 100%; background: #396cf0; overflow: auto; text-align: center; color: #FFF; margin-bottom: 30px;">
+				<div style="width: 100%; background: #396cf0; overflow: auto; text-align: center; color: #FFF; margin-bottom: 30px; border-radius: 5px;">
 					SELECT YOUR DATE
 					<?php if(isset($_GET['date'])){
 						?><input type="hidden" name="date" id="date" value="<?php echo $_GET['date']; ?>"><?php 
@@ -325,11 +347,11 @@ for ( $day = 1; $day <= $day_count; $day++, $str++) {
 						?>
 					</table>
 				</div>
-				<div style="width: 100%; background: #396cf0; overflow: auto; text-align: center; color: #FFF; margin-bottom: 30px; margin-top: 30px;">
+				<div style="width: 100%; background: #396cf0; overflow: auto; text-align: center; color: #FFF; margin-bottom: 30px; margin-top: 30px; border-radius: 5px;">
 					SELECT TIME
 				</div>
 				<div>
-					<div style="margin: auto; text-align: center;"><strong>Selecteaza Ora</strong>
+					<div style="margin: auto; text-align: center;"><strong>Select hour</strong>
 						<select name="ora" id="ora"><option></option>
 							<?php foreach($list_ora as $item){
 								if(isset($_GET['date'])){
@@ -347,14 +369,14 @@ for ( $day = 1; $day <= $day_count; $day++, $str++) {
 						</select>
 					</div>
 				</div>
-				<div style="width: 100%; background: #396cf0; overflow: auto; text-align: center; color: #FFF; margin-bottom: 30px; margin-top: 30px;">
+				<div style="width: 100%; background: #396cf0; overflow: auto; text-align: center; color: #FFF; margin-bottom: 30px; margin-top: 30px; border-radius: 5px;">
 					DESCRIBE HOW YOU FEEL
 				</div>
 				<div style="text-align: center;margin-bottom: 30px;">
 					<textarea name="description" id="description" rows="10" cols="80"></textarea>
 				</div>
 				<div style="text-align: center;margin-bottom: 30px;">
-					<button type="submit" name="prog" id="prog"?>Save the appointment</button>
+					<button type="submit" name="prog" id="prog"? class="button">Save the appointment</button>
 				</div>
 			</div>
 		</div>

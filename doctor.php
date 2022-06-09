@@ -12,10 +12,18 @@ e_admin_doc();
 ?>
 <?php 
  if(isset($_POST['prog'])){
-	 $ins = mysqli_query($conn, "insert into programari (id_doctor, id_depart, id_pacient, data, ora, description) values ('".$_SESSION['id_doctor']."', '".$_POST['id_depart']."', '".$_POST['id_pacient']."', '".$_POST['date']."', '".$_POST['ora']."', '".$_POST['description']."')") or die (mysqli_error($conn));
-	 if($ins) {
-		$error = "<div style='background:green; color:#FFFFFF; font-weight:bold;'>S-a salvat cu succes</div>";
-		echo '<META HTTP-EQUIV=Refresh CONTENT="2; URL=doctor.php?date='.date('Y-m-d').'">';
+	 if(isset($_POST["pacient"])){
+		$ins = mysqli_query($conn, "insert into programari (id_doctor, id_depart, id_pacient, data, ora, description, id_clinic, pacient) values ('".$_SESSION['id_doctor']."', '".$_POST['id_depart']."', '".$_POST['id_pacient']."', '".$_POST['date']."', '".$_POST['ora']."', '".$_POST['description']."', '".$_POST['id_clinic']."', '".$_POST['pacient']."' )") or die (mysqli_error($conn));
+		if($ins) {
+		   $error = "<div style='background:green; color:#FFFFFF; font-weight:bold;'>Successfully saved</div>";
+		   echo '<META HTTP-EQUIV=Refresh CONTENT="2; URL=doctor.php?date='.date('Y-m-d').'">';
+	   }
+	 } else {
+		$ins = mysqli_query($conn, "insert into programari (id_doctor, id_depart, id_pacient, data, ora, description, id_clinic) values ('".$_SESSION['id_doctor']."', '".$_POST['id_depart']."', '".$_POST['id_pacient']."', '".$_POST['date']."', '".$_POST['ora']."', '".$_POST['description']."', '".$_POST['id_clinic']."')") or die (mysqli_error($conn));
+		if($ins) {
+			$error = "<div style='background:green; color:#FFFFFF; font-weight:bold;'>Successfully saved</div>";
+			echo '<META HTTP-EQUIV=Refresh CONTENT="2; URL=doctor.php?date='.date('Y-m-d').'">';
+		}
 	}
  }
 ?>
@@ -73,7 +81,26 @@ for ( $day = 1; $day <= $day_count; $day++, $str++) {
     if ($today == $date) {
         $week .= '<td class="today"><a href="?ym='.$ym.'-'.$day.'">' . $day.'</a>';
     } else {
-		$week .= '<td><a href="?ym='.$ym.'-'.$day.'">' . $day.'</a>';
+		if($day < date('d'))
+		{
+			$week .= '<td class="today_close">' . $day; 
+		} else {
+			if(isset($_GET['date'])){
+				if(substr($_GET['date'], 8, 2) == $day){
+					$week .= '<td class="today_select"><a href="?ym='.$ym.'-'.$day.'"> ' . $day.' </a>'; 
+				} else{
+					$week .= '<td><a href="?ym='.$ym.'-'.$day.'">' . $day.'  </a>'; 
+				}
+			} else {
+				if(substr($_GET['ym'], 8, 2) == $day){
+					$week .= '<td class="today_select"><a href="?ym='.$ym.'-'.$day.'"> ' . $day.' </a>'; 
+				} else{
+					$week .= '<td><a href="?ym='.$ym.'-'.$day.'">' . $day.'  </a>'; 
+				}
+
+			}
+			
+		}
     }
     $week .= '</td>';
      
@@ -101,7 +128,7 @@ for ( $day = 1; $day <= $day_count; $day++, $str++) {
 <style>
 	body{
 		margin: 0;
-		background: #CBCBCB;
+		background: #FFF;
 	}
 	.header{
 		width: 1200px;
@@ -161,6 +188,14 @@ for ( $day = 1; $day <= $day_count; $day++, $str++) {
 		border-radius: 10px;
 		background: #D2F4FD;
 	}
+
+	.input{
+		width: 200px;
+		height: 40px;
+		border-radius: 10px;
+		background: #D2F4FD;
+	}
+
 	.search{
 		width: 150px;
 		height: 40px;
@@ -194,6 +229,17 @@ for ( $day = 1; $day <= $day_count; $day++, $str++) {
         .today {
             background: orange;
         }
+
+		.today_close {
+            background: #CCC;
+			color:white;
+        }
+
+		.today_select {
+			background: #396cf0;
+		}
+
+
         th:nth-of-type(1), td:nth-of-type(1) {
             color: red;
         }
@@ -280,7 +326,7 @@ for ( $day = 1; $day <= $day_count; $day++, $str++) {
 				<div style="float: left; width: 720px; padding-left: 30px; padding-top: 20px; height: 96.76px;">
 					<strong>Doctor: </strong><?php echo $rez[1]; ?><br><input type="hidden" name="id_doctor" id="id_doctor" value="<?php echo $rez[0]; ?>">
 					<strong>Clinic: </strong><?php echo $rez[3]; ?><br>
-					<strong>Adress: </strong><?php echo $rez[8]; ?><br>
+					<strong>Address: </strong><?php echo $rez[8]; ?><br>
 					<strong>Department: </strong><?php echo $rez[10]; ?><br><input type="hidden" name="id_depart" id="id_depart" value="<?php echo $rez[9]; ?>">
 					<strong>Phone: </strong><?php echo $rez[6]; ?><br>
 				</div>
@@ -304,7 +350,16 @@ for ( $day = 1; $day <= $day_count; $day++, $str++) {
 					$sel_dep = mysqli_query($conn, "select * from depart where id = '".$rez[2]."'") or die (mysqli_error($conn)); $rez_dep = mysqli_fetch_row($sel_dep); ?>
 					<div style="overflow: auto;">
 						<div style="float: left; width: 200px;"><?php echo $rez_dep[1]; ?></div>
-						<div style="float: left; width: 200px;"><?php if(isset($rez_pac[1])) { echo $rez_pac[1]; } else { echo "&nbsp;"; }?></div>
+						<div style="float: left; width: 200px;"><?php 
+						if(isset($rez_pac[1])) { 
+							echo $rez_pac[1]; 
+							} else { 
+								if(isset($rez[8])){
+									echo $rez[8];
+								} else {
+									echo "&nbsp;"; 
+								}
+							}?></div>
 						<div style="float: left; width: 200px;"><?php echo $rez[4]; ?></div>
 						<div style="float: left; width: 200px;"><?php echo $rez[5]; ?></div>
 						<div style="float: left; width: 200px;"><?php echo $rez[6]; ?></div>
@@ -356,7 +411,7 @@ for ( $day = 1; $day <= $day_count; $day++, $str++) {
 					SELECT TIME
 				</div>
 				<div>
-					<div style="margin: auto; text-align: center;"><strong>Selecteaza Ora</strong>
+					<div style="margin: auto; text-align: center;"><strong>Select the Hour</strong>
 						<select name="ora" id="ora"><option></option>
 							<?php foreach($list_ora as $item){
 								if(isset($_GET['date'])){
@@ -378,13 +433,14 @@ for ( $day = 1; $day <= $day_count; $day++, $str++) {
 					SELECT PACIENT
 				</div>
 				<div>
-					<div style="margin: auto; text-align: center;"><strong>Selecteaza Pacientul</strong>
+					<div style="margin: auto; text-align: center;"><strong>Select the Patient</strong>
 						<select name="id_pacient" id="id_pacient"><option></option>
 							<?php $sel_list_pac = mysqli_query($conn, "select * from pacienti ") or die (mysqli_error($conn));
 								while($rez_list_pac = mysqli_fetch_row($sel_list_pac)) {
 									echo "<option value='$rez_list_pac[0]'>$rez_list_pac[1]</option>";
 							} ?>
 						</select>
+						<input type="text" name="pacient" id="pacient" class="input">
 					</div>
 				</div>
 				<div style="width: 100%; background: #396cf0; overflow: auto; text-align: center; color: #FFF; margin-bottom: 30px; margin-top: 30px;">
@@ -394,7 +450,7 @@ for ( $day = 1; $day <= $day_count; $day++, $str++) {
 					<textarea name="description" id="description" rows="10" cols="80"></textarea>
 				</div>
 				<div style="text-align: center;margin-bottom: 30px;">
-					<button type="submit" name="prog" id="prog"?>Salveaza programarea</button>
+					<button type="submit" name="prog" id="prog"?>Save appointment</button>
 				</div>
 			</div>
 		</div>

@@ -2,11 +2,13 @@
 
 include('db.php');
 if(isset($_POST['trimite'])){ 
-	$rez = mysqli_query($conn, "INSERT INTO doctor (name, depart, clinica, email, pass, tel, file, adresa) VALUES ('".$_POST['name']."', '".$_POST['depart']."', '".$_POST['clinica']."', '".$_POST['email']."', '".md5($_POST['pass'])."', '".$_POST['tel']."', '".$_FILES['files']['name']."', '".$_POST['address']."')") or die (mysqli_error($conn));
+	$rez = mysqli_query($conn, "INSERT INTO doctor (name, depart, clinic, email, pass, tel, file, adresa) VALUES ('".$_POST['name']."', '".$_POST['depart']."', '".$_POST['clinic']."', '".$_POST['email']."', '".md5($_POST['pass'])."', '".$_POST['tel']."', '".$_FILES['files']['name']."', '".$_POST['address']."')") or die (mysqli_error($conn));
 	if($rez) {
-		move_uploaded_file($_FILES['files']['tmp_name'], "images/doctor/".$_FILES['files']['name']);
-		$error = "<div style='background:green; color:#FFFFFF; font-weight:bold;'>Successfully registered</div>";
-		echo '<META HTTP-EQUIV=Refresh CONTENT="2; URL=login.php">';
+		if($_FILES['files']['type'] == 'image/jpg' || $_FILES['files']['type'] == 'image/JPG'){
+			move_uploaded_file($_FILES['files']['tmp_name'], "images/doctor/".$_FILES['files']['name']);
+			$error = "<div style='background:green; color:#FFFFFF; font-weight:bold;'>Successfully registered</div>";
+			echo '<META HTTP-EQUIV=Refresh CONTENT="2; URL=login.php">';
+		}
 	}
 } else { $error = "&nbsp"; }
 ?>
@@ -141,7 +143,7 @@ if(isset($_POST['trimite'])){
 			<form action="reg_doc.php" method="post" enctype="multipart/form-data">
 					<input type="text" name="name" id="name" placeholder="First name and Last name" class="input"><br><br><br>
 					<select name="depart" id="depart" class="input">
-						<option>Select</option>
+						<option>Select the department</option>
 						<?php 
 							$sel = mysqli_query($conn, "select * from depart") or die (mysqli_error($conn));
 							while($rez = mysqli_fetch_row($sel)) {
@@ -149,7 +151,18 @@ if(isset($_POST['trimite'])){
 							}
 						?>
 					</select><br><br><br>
-					<input type="text" name="clinica" id="clinica" placeholder="clinica" class="input" required><br><br><br>
+
+					<!-- <input type="text" name="clinica" id="clinica" placeholder="clinica" class="input" required><br><br><br> -->
+					<select name="clinic" id="clinic" class="input">
+						<option>Select the Clinic</option>
+						<?php 
+							$sel = mysqli_query($conn, "select * from clinic") or die (mysqli_error($conn));
+							while($rez = mysqli_fetch_row($sel)) {
+								?><option value="<?php echo $rez[0]; ?>"><?php echo $rez[1]; ?></option><?php
+							}
+						?>
+					</select><br><br><br>
+
 					<input type="email" name="email" id="email" placeholder="E-mail" class="input" required><br><br><br>
 					<input type="password" name="pass" id="pass" placeholder="Password" class="input" required><br><br><br>
 					<input type="tel" name="tel" id="tel" placeholder="Phone" class="input" required><br><br><br>

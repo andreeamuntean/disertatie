@@ -4,7 +4,7 @@ $dbuser = "root";
 #vertigod_app
 $dbpass = "parola";
 #*5MXGJ93DJ@8
-$dbname = "safemed";
+$dbname = "safemeds";
 #vertigod_app
 
 $conn = mysqli_connect($server, $dbuser, $dbpass); //deschide conexiunea cu MySQL

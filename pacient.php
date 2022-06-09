@@ -170,6 +170,7 @@ if(isset($_POST['upload'])){
 					while($rez = mysqli_fetch_row($sel)) {
 						$sel_doc = mysqli_query($conn, "select * from doctor where id = '".$rez[1]."'") or die (mysqli_error($conn)); $rez_doc = mysqli_fetch_row($sel_doc);
 						$sel_dep = mysqli_query($conn, "select * from depart where id = '".$rez[2]."'") or die (mysqli_error($conn)); $rez_dep = mysqli_fetch_row($sel_dep);
+						
 						echo '<li>'.$rez_doc[1].' - '.$rez_dep[1].' - '.$rez[4].' - '.$rez[5]."</li>";
 					}
 				?>
