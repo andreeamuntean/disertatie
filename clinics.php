@@ -19,7 +19,7 @@ include('db.php');
 		height: 85px;
 		margin: auto;
 		overflow: auto;
-		background: #def2f1;
+		background: #FFA500;
 	}
 	.header .logo{
 		padding-left: 10px;
@@ -35,7 +35,7 @@ include('db.php');
 		width: 100%;
 		margin: auto;
 		overflow: auto;
-		background:#def2f1;
+		background:#FFA500;
 	}
 	.logo{
 		float: left;

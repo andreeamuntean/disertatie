@@ -220,7 +220,7 @@ if(isset($_POST['trimite'])){
 <html>
 <head>
 <meta charset="utf-8">
-<title>Safemed</title>
+<title>Mediclean</title>
 <style>
 
 .flip-card {
@@ -282,7 +282,7 @@ if(isset($_POST['trimite'])){
 		height: 85px;
 		margin: auto;
 		overflow: auto;
-		background: #def2f1;
+		background: #FFA500;
 	}
 	.header .logo{
 		padding-left: 10px;
@@ -296,7 +296,7 @@ if(isset($_POST['trimite'])){
 		width: 100%;
 		margin: auto;
 		overflow: auto;
-		background:#def2f1;
+		background:#FFA500;
 	}
 	.logo{
 		float: left;
@@ -336,7 +336,7 @@ if(isset($_POST['trimite'])){
 	.search{
 		width: 150px;
 		height: 40px;
-		background: #5AEBAE;
+		background: #FFA500;
 		border-radius: 10px;
 	}
 
@@ -456,7 +456,7 @@ if(isset($_POST['trimite'])){
 </head>
 <script src='https://kit.fontawesome.com/a076d05399.js' crossorigin='anonymous'></script>
 <body>
-	<div style="width: 100%; background: #def2f1;">
+	<div style="width: 100%; background: #FFA500;">
 		<div class="header">
 			<div class="logo"><a href="index.php"><img src="images/Untitled-2 1.png" height="80"></a>
 

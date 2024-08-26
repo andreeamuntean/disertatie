@@ -3,7 +3,7 @@
 <html>
 <head>
 <meta charset="utf-8">
-<title>Safemed</title>
+<title>Medicelan</title>
 <style>
 	body{
 		margin: 0;
@@ -14,7 +14,7 @@
 		height: 85px;
 		margin: auto;
 		overflow: auto;
-		background: #def2f1;
+		background: #FFA500;
 	}
 	.header .logo{
 		padding-left: 10px;
@@ -23,13 +23,13 @@
 		width: 1200px;
 		margin: auto;
 		overflow: auto;
-		background: #def2f1;
+		background: #FFA500;
 	}
 	.footer{
 		width: 100%;
 		margin: auto;
 		overflow: auto;
-		background:#def2f1;
+		background:#FFA500;
 	}
 	.logo{
 		float: left;
@@ -67,7 +67,7 @@
 
 <body>
 	<!-- <div style="width: 100%; background-image:url(https://goo.gl/maps/EdtLGuLcz6NDo9ww5)"> -->
-	<div style="width: 100%; background: #def2f1;">
+	<div style="width: 100%; background: #FFA500;">
 		<div class="header">
 			<div class="logo"><a href="index.php"><img src="images/Untitled-2 1.png" height="80"></a>
 
@@ -111,18 +111,18 @@
 		<div style="margin: auto; width: 1100px; height: auto; padding: 20px; ">CONTACT <br> <br>
 			<div style="float: left; width: 350px; margin-right: 20px; margin-bottom: 25px; overflow: auto;">
 			<i class="fas fa-map-marker-alt">Address</i>
-			<p> Crizantemelor Street, no. 123 </p>
+			<p> Ciocarliei Street, no. 11 </p>
 			<p>Timisoara</p>
 			</div>
 
 			<div style="float: left; width: 350px; overflow: auto;">
 			<i class="fas fa-phone-alt">Phone</i> 
-			<p>+40 722 950 010</p>
+			<p>+40 748 951 427</p>
 			</div>
 
 			<div style="float: left; width: 350px; overflow: auto;">
 			<i class="fas fa-envelope">Email</i>
-				<p>safemed@gmail.com</p>
+				<p>mediclean@gmail.com</p>
 			</div>
 
 

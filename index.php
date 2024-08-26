@@ -4,7 +4,7 @@
 <head>
 <meta charset="utf-8">
 
-<title>Safemed</title>
+<title>Mediclean</title>
 
 <style>
 	body{
@@ -18,7 +18,7 @@
 		height: 85px;
 		margin: auto;
 		overflow: auto;
-		background: #def2f1;
+		background: #0e4d92;
 	}
 	.header .logo{
 		padding-left: 10px;
@@ -32,7 +32,7 @@
 		width: 100%;
 		margin: auto;
 		overflow: auto;
-		background:#def2f1;
+		background:#FFA500;
 	}
 	.logo{
 		float: left;
@@ -57,7 +57,7 @@
 	.meniu a:hover{box-shadow: 0 0 11px rgba(33,33,33,.2); }
 	.middle .banner{
 		width: 600px;
-		background-image: url("images/bg2.png");
+		background-image: url("images/try.png");
 		height: 428px;
 		background-size:100% 100%;
 		padding-top: 100px;
@@ -69,7 +69,7 @@
 		min-height: 300px; 
 		padding: 10px; 
 		border-radius: 20px; 
-		background: #6eadb0; 
+		background: #FFA500; 
 		text-align: center;
 		margin-left:45px; 
 		
@@ -80,7 +80,7 @@
 		min-height: 300px; 
 		padding: 20px; 
 		border-radius: 10px; 
-		background: #3A8490; 
+		background: #0e4d92; 
 		text-align: center; 
 		color:#FFFFFF;
 	}
@@ -98,7 +98,7 @@
 </head>
 
 <body>
-	<div style="width: 100%; background: #def2f1;">
+	<div style="width: 100%; background: #0e4d92;">
 		<div class="header">
 			<div class="logo"><a href="index.php"><img src="images/Untitled-2 1.png" height="80"></a>
 
@@ -112,7 +112,7 @@
 					<a href="pacient.php">My account</a>
 					<a href="service.php">Services and prices</a>
 					<a href="appoint.php">Make an appointment</a>
-					<a href="index.php">How it works</a>
+					<a href="index.php">Welcome</a>
 				<?php break; case 'access_doc': ?>
 					<a href="logout.php">Logout</a>
 					<a href="contact.php">Contact</a>
@@ -126,9 +126,9 @@
 						Login | Register
 				
 					</a>
-					<a href="service.php">Services and prices</a>
-					<a href="appoint.php">Make an appointment</a>
-					<a href="index.php">How it works</a>
+					<a href="service.php">Services</a>
+					<a href="appoint.php">Appointment</a>
+					<a href="index.php">Welcome</a>
 				<?php } ?>
 				
 				
@@ -155,10 +155,10 @@
 				<div style="float: left; width: 570px; padding: 10px;">
 					<div style="text-align: center; margin-top: 25px; margin-bottom: 25px; overflow: auto">
 						<div style="float: left; width: 50%;"><img src="images/doctor 1.png" width="150" margin="auto"></div>
-						<div style="float: left; width: 40%; height: 70px; margin-top: 80px;"><h1 style="font-family:Georgia, 'Times New Roman', Times, serif; color:#3A8490">If you are a doctor</h1></div>
+						<div style="float: left; width: 40%; height: 70px; margin-top: 80px;"><h1 style="font-family:Georgia, 'Times New Roman', Times, serif; color:#FFA500">If you are a doctor</h1></div>
 					</div>
 				</div>
-				<div style="float: left; width: 569px; border-left: 1px solid #6eadb0; padding: 10px; overflow: auto;">
+				<div style="float: left; width: 569px; border-left: 1px solid #FFA500; padding: 10px; overflow: auto;">
 				<div class="card">		
 						<ul><br>
 							<li style="font-family:Georgia, 'Times New Roman', Times, serif; color:#FFFFFF">You have to <a href="login.php">register/login</a> as a doctor</li><br>
@@ -177,7 +177,7 @@
 						<div style="float: left; width: 40%; height: 70px; margin-top: 80px;"><h1 style="font-family:Georgia, 'Times New Roman', Times, serif; color:#3A8490">If you are a patient</h1></div>
 					</div>
 				</div>
-				<div style="float: left; width: 569px; border-left: 1px solid #6eadb0; padding: 10px; overflow: auto;">
+				<div style="float: left; width: 569px; border-left: 1px solid #FFA500; padding: 10px; overflow: auto;">
 				<div class="card">
 						<ul><br>
 							<li style="font-family:Georgia, 'Times New Roman', Times, serif; color:#FFFFFF">You have to <a href="login.php">register/login</a> as a doctor</li><br>
@@ -197,7 +197,7 @@
 			<img src="images/Untitled-2 1.png" height="80" style="vertical-align:top;margin:20px 20px">
 		</div>
 
-		<div style="margin: auto; width: 1180px; height: auto; padding: 20px; "><h1 style="font-family:Georgia, 'Times New Roman', Times, serif; color:#3A8490; text-align:center">CONTACT</h1> <br> <br>
+		<div style="margin: auto; width: 1180px; height: auto; padding: 20px; "><h1 style="font-family:Georgia, 'Times New Roman', Times, serif; color:#FFFFFF; text-align:center">CONTACT</h1> <br> <br>
 		<div style="float: left; width: 380px; margin-right: 20px; margin-bottom: 25px; overflow: auto;">
 		<i class="fas fa-map-marker-alt"><h2>Address</h2></i>
 		<address>Crizantemelor Street, no. 123</address>
