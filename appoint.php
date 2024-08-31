@@ -282,7 +282,7 @@ if(isset($_POST['trimite'])){
 		height: 85px;
 		margin: auto;
 		overflow: auto;
-		background: #FFA500;
+		background: #0e4d92;
 	}
 	.header .logo{
 		padding-left: 10px;
@@ -321,7 +321,7 @@ if(isset($_POST['trimite'])){
 	.meniu a:hover{box-shadow: 0 0 11px rgba(33,33,33,.2); }
 	.middle .banner{
 		width: 500px;
-		background-image: url("images/bg2.png");
+		background-image: url("images/try.png");
 		height: 428px;
 		background-size:100% 100%;
 		padding-top: 100px;
@@ -336,7 +336,7 @@ if(isset($_POST['trimite'])){
 	.search{
 		width: 150px;
 		height: 40px;
-		background: #FFA500;
+		background: #0e4d92;
 		border-radius: 10px;
 	}
 
@@ -456,7 +456,7 @@ if(isset($_POST['trimite'])){
 </head>
 <script src='https://kit.fontawesome.com/a076d05399.js' crossorigin='anonymous'></script>
 <body>
-	<div style="width: 100%; background: #FFA500;">
+	<div style="width: 100%; background: #0e4d92;">
 		<div class="header">
 			<div class="logo"><a href="index.php"><img src="images/Untitled-2 1.png" height="80"></a>
 
@@ -479,10 +479,10 @@ if(isset($_POST['trimite'])){
 				<?php break; ?>
 				<?php } } else { ?>
 					<a href="contact.php">Contact</a>
-					<a href="login.php">Login / Register</a>
-					<a href="service.php">Services and prices</a>
-					<a href="appoint.php">Make an appointment</a>
-					<a href="index.php">How it works</a>
+					<a href="login.php">Login | Register</a>
+					<a href="service.php">Services</a>
+					<a href="appoint.php">Appointment</a>
+					<a href="index.php">Welcome</a>
 				<?php } ?>
 			</div>
 		</div>
